@@ -11,7 +11,12 @@ Playlist is used to replicate a simple base multiplayer setup.
 The idea is that this "start up" can be used in the future for "any" kind of multiplayer game I'd like to start making. 
 This means any commits after the entire guide setup will be useful for future projects.
 
+Plugins will be on PROJECT LEVEL. This is done to keep the project as standalone as possible.
 
 Plugins:
 
-- 
+- Advanced Sessions Plugin - https://forums.unrealengine.com/community/community-content-tools-and-tutorials/41043-advanced-sessions-plugin
+
+Other:
+
+- Online subsystem steam - https://docs.unrealengine.com/en-us/Programming/Online/Steam
