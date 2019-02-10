@@ -1,4 +1,4 @@
-Unreal Engine 4 - Base multiplayer game using blueprints only
+Unreal Engine 4 - Base multiplayer game
 
 Guides used to set up the initial parts of the project:
 - https://www.youtube.com/playlist?list=PL56pcT0mYsOgFmbwukjKppPI_Q7E89jTK
