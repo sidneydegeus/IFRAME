@@ -1,22 +1,11 @@
-Unreal Engine 4 - Base multiplayer game using blueprints only
+Unreal Engine 4 - Base multiplayer game
 
-Guides used to replicate this:
-
-- https://www.youtube.com/watch?v=FXMTHrLWFKQ
+Guides used to set up the initial parts of the project:
+- https://www.youtube.com/playlist?list=PL56pcT0mYsOgFmbwukjKppPI_Q7E89jTK
 - https://www.youtube.com/playlist?list=PLwmGmCVti_dDl8CMa_91FdwgZ0W010d5v
 
-Git video is used primarily so that it can be used as reference in case other people (e.g. people that make models) that aren't familiar with git have a guide to get it to work too.
-The playlist is used to replicate a simple base multiplayer setup in unreal engine 4 with blueprints. 
-
-The idea is that this "start up" can be used in the future for "any" kind of multiplayer game I'd like to start making. 
-This means any commits after the entire guide setup will be useful for future projects.
-
-Plugins will be on PROJECT LEVEL. This is done to keep the project as standalone as possible.
-
 Plugins:
-
-- Advanced Sessions Plugin - https://forums.unrealengine.com/community/community-content-tools-and-tutorials/41043-advanced-sessions-plugin
+Advanced Sessions Plugin - https://forums.unrealengine.com/community/community-content-tools-and-tutorials/41043-advanced-sessions-plugin
 
 Other:
-
 - Online subsystem steam - https://docs.unrealengine.com/en-us/Programming/Online/Steam
