@@ -33,13 +33,14 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void ABaseCharacter::UpdateCharacterStatus_Implementation() {
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
+}
+
+#pragma region Initialize Health
 void ABaseCharacter::InitializeHealth() {
 	if (Role == ROLE_Authority)
 		InitializeHealthServer();
-}
-
-void ABaseCharacter::UpdateCharacterStatus_Implementation() {
-	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
 }
 
 void ABaseCharacter::InitializeHealthServer_Implementation() {
@@ -50,6 +51,9 @@ bool ABaseCharacter::InitializeHealthServer_Validate(void) {
 	return true;
 }
 
+#pragma endregion Initialize Health
+
+#pragma region Calculate Health
 void ABaseCharacter::CalculateHealth(float delta) {
 	if (Role == ROLE_Authority) {
 		CalculateHealthServer(delta);
@@ -64,3 +68,40 @@ void ABaseCharacter::CalculateHealthServer_Implementation(float delta) {
 bool ABaseCharacter::CalculateHealthServer_Validate(float delta) {
 	return true;
 }
+#pragma endregion Calculate Health
+
+void ABaseCharacter::OnTakeDamage(float Damage) {
+	if (Role == ROLE_Authority) {
+		float actualDamage = Damage * -1;
+		CalculateHealth(actualDamage);
+	}
+}
+
+//float ABaseCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) {
+//	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("taking damage omg!"));
+//	const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+//
+//	return ActualDamage;
+//}
+
+//float ABaseCharacter::TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser) {
+//	float actualDamage = Damage * -1;
+//	CalculateHealth(actualDamage);
+//	return actualDamage;
+//}
+//
+//void ABaseCharacter::OnTakeAnyDamage() {
+//
+//}
+
+//float ABaseCharacter::ReceiveAnyDamage(float Damage, const UDamageType *DamageType, AController *InstigatedBy, AActor *DamageCauser) {
+//
+//}
+//
+//void ABaseCharacter::OnTakeDamage_Implementation(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser) {
+//	TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+//}
+//
+//bool ABaseCharacter::OnTakeDamage_Validate(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser) {
+//	return true;
+//}

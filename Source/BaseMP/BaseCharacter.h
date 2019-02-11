@@ -53,7 +53,24 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, Category = "Base Character")
+		void OnTakeDamage(float Damage);
+	//float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
+	//void TakeAnyDamage();
+
+	//UFUNCTION(Server, reliable, WithValidation)
+	//void TakeAnyDamageServer();
+	//void TakeAnyDamageServer_Implementation();
+	//bool TakeAnyDamageServer_Validate();
+
+
+	//float ReceiveAnyDamage(float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser) override;
+
+	//UFUNCTION(Server, reliable, WithValidation)
+	//	void OnTakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
+	//	void OnTakeDamage_Implementation(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
+	//	bool OnTakeDamage_Validate(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
 
 public:
 	// Called every frame
