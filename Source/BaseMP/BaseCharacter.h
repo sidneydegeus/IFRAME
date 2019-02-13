@@ -26,7 +26,10 @@ public:
 		float Health;
 
 	UFUNCTION(BlueprintCallable, Category = "Base Character")
-		void CalculateHealth(float delta);
+		void IncreaseHealth(float amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Base Character")
+		void DecreaseHealth(float amount);
 
 	UFUNCTION(BlueprintCallable, Category = "Base Character")
 		void InitializeHealth();
