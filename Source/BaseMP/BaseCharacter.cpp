@@ -6,6 +6,7 @@
 void ABaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ABaseCharacter, Health);
+	DOREPLIFETIME(ABaseCharacter, EquipedWeaponClass);
 }
 
 // Sets default values
@@ -36,6 +37,30 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ABaseCharacter::UpdateCharacterStatus_Implementation() {
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
 }
+
+#pragma region Weapon
+
+void ABaseCharacter::ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass) {
+	if (Role < ROLE_Authority) {
+		// this part gets executed if it currently is a client. You throw the request to the server
+		ChangeWeaponServer(WeaponClass);
+	}
+	EquipedWeaponClass = WeaponClass;
+	ChangeWeaponEvent();
+}
+
+void ABaseCharacter::ChangeWeaponEvent_Implementation() {
+// empty so that it can be overwritten in blueprint
+}
+
+void ABaseCharacter::ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass) {
+	ChangeWeapon(WeaponClass);
+}
+
+bool ABaseCharacter::ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass) {
+	return true;
+}
+#pragma endregion Weapon
 
 #pragma region Health
 void ABaseCharacter::InitializeHealth() {

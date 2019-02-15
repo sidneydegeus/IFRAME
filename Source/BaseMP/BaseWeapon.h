@@ -32,6 +32,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Base Weapon")
 		void UseWeapon();
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

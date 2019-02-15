@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-AdvancedSteamSessions-6320.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"D:\Users\Sidney\Documents\Unreal Projects\BaseMP\Intermediate\Build\Win64\BaseMPEditor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\Users\Sidney\Documents\Unreal Projects\BaseMP\Plugins\AdvancedSessions\AdvancedSteamSessions\Intermediate\Build\Win64\UE4Editor\Development\AdvancedSteamSessions\Module.AdvancedSteamSessions.cpp.obj"
+"D:\Users\Sidney\Documents\Unreal Projects\BaseMP\Plugins\AdvancedSessions\AdvancedSteamSessions\Intermediate\Build\Win64\UE4Editor\Development\AdvancedSteamSessions\Module.AdvancedSteamSessions.gen.cpp.obj"
+"D:\Users\Sidney\Documents\Unreal Projects\BaseMP\Plugins\AdvancedSessions\AdvancedSteamSessions\Intermediate\Build\Win64\UE4Editor\Development\AdvancedSteamSessions\PCLaunch.rc.res"
+/OUT:"D:\Users\Sidney\Documents\Unreal Projects\BaseMP\Plugins\AdvancedSessions\AdvancedSteamSessions\Intermediate\Build\Win64\UE4Editor\Development\AdvancedSteamSessions\UE4Editor-AdvancedSteamSessions-6320.lib"

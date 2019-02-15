@@ -4,7 +4,7 @@
 
 // You need this include to get the Replication working. Good place for it would be your Projects Header!
 #include "UnrealNetwork.h"
-
+#include "BaseWeapon.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
@@ -19,10 +19,41 @@ public:
 	// Sets default values for this character's properties
 	ABaseCharacter();
 
-	UPROPERTY(
-		BlueprintReadOnly, 
-		ReplicatedUsing = UpdateCharacterStatus,
-		Category = "Base Character")
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+#pragma region Weapon
+public:
+	UPROPERTY(BlueprintReadWrite, Category = "Base Character")
+		ABaseWeapon* EquipedWeapon;
+
+	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Base Character")
+		TSubclassOf<ABaseWeapon> EquipedWeaponClass;
+
+	//UFUNCTION(BlueprintCallable, Category = "Base Character")
+	//	void SetEquipedWeapon(TSubclassOf<ABaseWeapon> WeaponClass);
+
+	UFUNCTION(BlueprintCallable, Category = "Base Character")
+		void ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void ChangeWeaponEvent();
+		virtual void ChangeWeaponEvent_Implementation();
+
+private:
+	UFUNCTION(Server, reliable, WithValidation)
+		void ChangeWeaponServer(TSubclassOf<ABaseWeapon> WeaponClass);
+		void ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass);
+		bool ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass);
+
+#pragma endregion Weapon
+
+#pragma region Health
+public:
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = UpdateCharacterStatus, Category = "Base Character")
 		float Health;
 
 	UFUNCTION(BlueprintCallable, Category = "Base Character")
@@ -38,17 +69,18 @@ public:
 		void UpdateCharacterStatus();
 		virtual void UpdateCharacterStatus_Implementation();
 
+private:
 	UFUNCTION(Server, reliable, WithValidation)
 		void InitializeHealthServer();
 		void InitializeHealthServer_Implementation();
 		bool InitializeHealthServer_Validate();
 
-
-
 	UFUNCTION(Server, reliable, WithValidation)
 		void CalculateHealthServer(float delta);
 		void CalculateHealthServer_Implementation(float delta);
 		bool CalculateHealthServer_Validate(float delta);
+
+#pragma endregion Health
 
 
 protected:
@@ -58,28 +90,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Base Character")
 		void OnTakeDamage(float Damage);
-	//float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
-
-	//void TakeAnyDamage();
-
-	//UFUNCTION(Server, reliable, WithValidation)
-	//void TakeAnyDamageServer();
-	//void TakeAnyDamageServer_Implementation();
-	//bool TakeAnyDamageServer_Validate();
 
 
-	//float ReceiveAnyDamage(float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser) override;
-
-	//UFUNCTION(Server, reliable, WithValidation)
-	//	void OnTakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
-	//	void OnTakeDamage_Implementation(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
-	//	bool OnTakeDamage_Validate(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };
