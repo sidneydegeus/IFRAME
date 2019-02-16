@@ -49,7 +49,3 @@ bool ABaseWeapon_Ranged::HasAmmo() {
 	return result;
 }
 
-void ABaseWeapon_Ranged::FireWeapon_Implementation() {
-	DecreaseAmmo(AmmoPerShot);
-	FireWeaponBP();
-}

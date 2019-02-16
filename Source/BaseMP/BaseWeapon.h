@@ -16,14 +16,15 @@ class BASEMP_API ABaseWeapon : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ABaseWeapon();
+	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		FName Name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		float DamageMultiplier = 1.0;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		WeaponEnum WeaponType;
 
 	UPROPERTY(VisibleAnywhere, Category = "Base Weapon", meta = (AllowPrivateAccess = "true"))
@@ -32,26 +33,20 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Base Weapon")
 		void UseWeapon();
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 
-	virtual bool CanUseWeapon();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void UseWeaponEvent();
+		virtual void UseWeaponEvent_Implementation();
 
-	UFUNCTION(NetMulticast, reliable)
-		void FireWeapon();
-		virtual void FireWeapon_Implementation();
+		virtual bool CanUseWeapon();
 
-	// Fire weapon BP can potentially be removed at some point. When all code is transfered to C++
-	UFUNCTION(BlueprintNativeEvent)
-		void FireWeaponBP();
-		virtual void FireWeaponBP_Implementation();
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+private:
+	UFUNCTION(Server, reliable, WithValidation)
+		void UseWeaponServer();
+		void UseWeaponServer_Implementation();
+		bool UseWeaponServer_Validate();
 };

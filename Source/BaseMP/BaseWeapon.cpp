@@ -11,6 +11,8 @@ ABaseWeapon::ABaseWeapon()
 	RootComponent = SkeletalMeshComponent;
 }
 
+
+
 // Called when the game starts or when spawned
 void ABaseWeapon::BeginPlay()
 {
@@ -31,23 +33,31 @@ void ABaseWeapon::Tick(float DeltaTime)
 
 void ABaseWeapon::UseWeapon() {
 	// i'm not sure... do I need to replicate this?
-	if (CanUseWeapon()) {
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
-		if (Role == ROLE_Authority) {
-			// call server
-			FireWeapon();
-		}
+	//if (CanUseWeapon()) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
+	//	if (Role == ROLE_Authority) {
+	//		// call server
+	//		FireWeapon();
+	//	}
+	//}
+
+	if (Role < ROLE_Authority) {
+		UseWeaponServer();
 	}
+	UseWeaponEvent();
+}
+
+void ABaseWeapon::UseWeaponServer_Implementation() {
+	UseWeapon();
+}
+
+bool ABaseWeapon::UseWeaponServer_Validate() {
+	return CanUseWeapon();
+}
+
+void ABaseWeapon::UseWeaponEvent_Implementation() {
 }
 
 bool ABaseWeapon::CanUseWeapon() {
 	return true;
-}
-
-void ABaseWeapon::FireWeapon_Implementation() {
-	FireWeaponBP();
-}
-
-void ABaseWeapon::FireWeaponBP_Implementation() {
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Multicast attack!"));
 }

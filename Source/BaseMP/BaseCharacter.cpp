@@ -10,6 +10,7 @@
 void ABaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ABaseCharacter, Health);
+	DOREPLIFETIME(ABaseCharacter, EquipedWeapon);
 	DOREPLIFETIME(ABaseCharacter, EquipedWeaponClass);
 }
 

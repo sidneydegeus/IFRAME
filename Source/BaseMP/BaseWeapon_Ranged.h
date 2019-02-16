@@ -40,8 +40,6 @@ public:
 protected:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 
-	virtual void FireWeapon_Implementation() override;
-
-	virtual bool CanUseWeapon() override;
+	bool CanUseWeapon() override;
 	virtual bool HasAmmo();
 };

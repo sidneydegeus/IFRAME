@@ -27,7 +27,7 @@ public:
 
 #pragma region Weapon
 public:
-	UPROPERTY(BlueprintReadWrite, Category = "Base Character")
+	UPROPERTY(BlueprintReadWrite, Replicated, Category = "Base Character")
 		ABaseWeapon* EquipedWeapon;
 
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Base Character")
@@ -81,7 +81,6 @@ private:
 		bool CalculateHealthServer_Validate(float delta);
 
 #pragma endregion Health
-
 
 protected:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
