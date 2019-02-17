@@ -44,9 +44,9 @@ protected:
 
 		virtual bool CanUseWeapon();
 
-	UFUNCTION(Server, reliable, WithValidation, BlueprintCallable)
+private:
+	UFUNCTION(Server, reliable, WithValidation)
 		void UseWeaponServer();
 		void UseWeaponServer_Implementation();
 		bool UseWeaponServer_Validate();
-
 };

@@ -43,10 +43,8 @@ void ABaseWeapon::UseWeapon() {
 
 	if (Role < ROLE_Authority) {
 		UseWeaponServer();
-		//return;
 	}
 	UseWeaponEvent();
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
 }
 
 void ABaseWeapon::UseWeaponServer_Implementation() {
