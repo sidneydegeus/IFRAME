@@ -32,21 +32,11 @@ void ABaseWeapon::Tick(float DeltaTime)
 }
 
 void ABaseWeapon::UseWeapon() {
-	// i'm not sure... do I need to replicate this?
-	//if (CanUseWeapon()) {
-	//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
-	//	if (Role == ROLE_Authority) {
-	//		// call server
-	//		FireWeapon();
-	//	}
-	//}
-
 	if (Role < ROLE_Authority) {
 		UseWeaponServer();
-		//return;
 	}
 	UseWeaponEvent();
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
 }
 
 void ABaseWeapon::UseWeaponServer_Implementation() {
