@@ -44,25 +44,25 @@ void ABaseCharacter::UpdateCharacterStatus_Implementation() {
 
 #pragma region Weapon
 
-void ABaseCharacter::ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController) {
+void ABaseCharacter::ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter) {
 	if (Role < ROLE_Authority) {
-		ChangeWeaponServer(WeaponClass, playerController);
+		ChangeWeaponServer(WeaponClass, playerCharacter);
 	}
 	EquipedWeaponClass = WeaponClass;
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("a"));
-	ChangeWeaponEvent(playerController);
+	ChangeWeaponEvent(playerCharacter);
 	//GetPlayerControllerFromNetId();
 }
 
-void ABaseCharacter::ChangeWeaponEvent_Implementation(APlayerController* playerController) {
+void ABaseCharacter::ChangeWeaponEvent_Implementation(ACharacter* playerCharacter) {
 	// empty so that it can be overwritten in blueprint
 }
 
-void ABaseCharacter::ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController) {
-	ChangeWeapon(WeaponClass, playerController);
+void ABaseCharacter::ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter) {
+	ChangeWeapon(WeaponClass, playerCharacter);
 }
 
-bool ABaseCharacter::ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController) {
+bool ABaseCharacter::ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter) {
 	return true;
 }
 #pragma endregion Weapon

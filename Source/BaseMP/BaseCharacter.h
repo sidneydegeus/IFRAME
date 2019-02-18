@@ -37,17 +37,17 @@ public:
 	//	void SetEquipedWeapon(TSubclassOf<ABaseWeapon> WeaponClass);
 
 	UFUNCTION(BlueprintCallable, Category = "Base Character")
-		void ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController);
+		void ChangeWeapon(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-		void ChangeWeaponEvent(APlayerController* playerController);
-		virtual void ChangeWeaponEvent_Implementation(APlayerController* playerController);
+		void ChangeWeaponEvent(ACharacter* playerCharacter);
+		virtual void ChangeWeaponEvent_Implementation(ACharacter* playerCharacter);
 
 private:
 	UFUNCTION(Server, reliable, WithValidation)
-		void ChangeWeaponServer(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController);
-		void ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController);
-		bool ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass, APlayerController* playerController);
+		void ChangeWeaponServer(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter);
+		void ChangeWeaponServer_Implementation(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter);
+		bool ChangeWeaponServer_Validate(TSubclassOf<ABaseWeapon> WeaponClass, ACharacter* playerCharacter);
 
 #pragma endregion Weapon
 
