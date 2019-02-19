@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "BaseWeapon.h"
 #include "BaseWeapon_Melee.generated.h"
 

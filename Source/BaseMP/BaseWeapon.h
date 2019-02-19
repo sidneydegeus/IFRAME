@@ -40,7 +40,7 @@ protected:
 
 	virtual bool CanUseWeapon();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
 		void UseWeaponEvent();
 		virtual void UseWeaponEvent_Implementation();
 
@@ -49,11 +49,11 @@ protected:
 		void UseWeaponServer_Implementation();
 		bool UseWeaponServer_Validate();
 
-	UFUNCTION(NetMulticast, reliable)
+	UFUNCTION(NetMulticast, reliable, BlueprintCallable)
 		void WeaponAnimationMulticast();
 		void WeaponAnimationMulticast_Implementation();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
 		void WeaponAnimationEvent();
 		virtual void WeaponAnimationEvent_Implementation();
 };

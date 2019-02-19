@@ -37,7 +37,7 @@ void ABaseWeapon::UseWeapon() {
 	}
 	if (Role == ROLE_Authority) {
 		UseWeaponEvent();
-		WeaponAnimationMulticast();
+		//WeaponAnimationMulticast();
 		//multicast  event
 	}
 
