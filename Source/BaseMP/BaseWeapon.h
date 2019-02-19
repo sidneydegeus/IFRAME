@@ -38,15 +38,22 @@ protected:
 	virtual void BeginPlay() override;
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 
+	virtual bool CanUseWeapon();
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void UseWeaponEvent();
 		virtual void UseWeaponEvent_Implementation();
 
-		virtual bool CanUseWeapon();
-
-	UFUNCTION(Server, reliable, WithValidation, BlueprintCallable)
+	UFUNCTION(Server, reliable, WithValidation)
 		void UseWeaponServer();
 		void UseWeaponServer_Implementation();
 		bool UseWeaponServer_Validate();
 
+	UFUNCTION(NetMulticast, reliable)
+		void WeaponAnimationMulticast();
+		void WeaponAnimationMulticast_Implementation();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void WeaponAnimationEvent();
+		virtual void WeaponAnimationEvent_Implementation();
 };

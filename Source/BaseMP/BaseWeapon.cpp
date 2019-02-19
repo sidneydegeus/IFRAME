@@ -35,7 +35,12 @@ void ABaseWeapon::UseWeapon() {
 	if (Role < ROLE_Authority) {
 		UseWeaponServer();
 	}
-	UseWeaponEvent();
+	if (Role == ROLE_Authority) {
+		UseWeaponEvent();
+		WeaponAnimationMulticast();
+		//multicast  event
+	}
+
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
 }
 
@@ -47,7 +52,16 @@ bool ABaseWeapon::UseWeaponServer_Validate() {
 	return CanUseWeapon();
 }
 
+void ABaseWeapon::WeaponAnimationMulticast_Implementation() {
+	WeaponAnimationEvent();
+}
+
+void ABaseWeapon::WeaponAnimationEvent_Implementation() {
+	//empty for blueprint to implement
+}
+
 void ABaseWeapon::UseWeaponEvent_Implementation() {
+	//empty for blueprint to implement
 }
 
 bool ABaseWeapon::CanUseWeapon() {
