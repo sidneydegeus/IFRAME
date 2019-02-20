@@ -44,6 +44,8 @@ void ABaseWeapon::UseWeapon() {
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, HasAuthority() ? TEXT("Attack Server!") : TEXT("Attack Client!"));
 }
 
+
+
 void ABaseWeapon::UseWeaponServer_Implementation() {
 	UseWeapon();
 }
@@ -52,11 +54,23 @@ bool ABaseWeapon::UseWeaponServer_Validate() {
 	return CanUseWeapon();
 }
 
-void ABaseWeapon::WeaponAnimationMulticast_Implementation() {
-	WeaponAnimationEvent();
+void ABaseWeapon::WeaponAttackAnimationMulticast_Implementation() {
+	//if (Role == ROLE_Authority) {
+		WeaponAttackAnimationEvent();
+	//}
 }
 
-void ABaseWeapon::WeaponAnimationEvent_Implementation() {
+void ABaseWeapon::WeaponIdleAnimationMulticast_Implementation() {
+	//if (Role == ROLE_Authority) {
+		WeaponIdleAnimationEvent();
+	//}
+}
+
+void ABaseWeapon::WeaponAttackAnimationEvent_Implementation() {
+	//empty for blueprint to implement
+}
+
+void ABaseWeapon::WeaponIdleAnimationEvent_Implementation() {
 	//empty for blueprint to implement
 }
 

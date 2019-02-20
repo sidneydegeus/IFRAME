@@ -33,6 +33,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Base Weapon")
 		void UseWeapon();
 
+	UFUNCTION(NetMulticast, unreliable, BlueprintCallable, Category = "Base Weapon")
+		void WeaponIdleAnimationMulticast();
+		void WeaponIdleAnimationMulticast_Implementation();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -50,10 +54,14 @@ protected:
 		bool UseWeaponServer_Validate();
 
 	UFUNCTION(NetMulticast, reliable, BlueprintCallable)
-		void WeaponAnimationMulticast();
-		void WeaponAnimationMulticast_Implementation();
+		void WeaponAttackAnimationMulticast();
+		void WeaponAttackAnimationMulticast_Implementation();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
-		void WeaponAnimationEvent();
-		virtual void WeaponAnimationEvent_Implementation();
+		void WeaponAttackAnimationEvent();
+		virtual void WeaponAttackAnimationEvent_Implementation();
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
+		void WeaponIdleAnimationEvent();
+		virtual void WeaponIdleAnimationEvent_Implementation();
 };
