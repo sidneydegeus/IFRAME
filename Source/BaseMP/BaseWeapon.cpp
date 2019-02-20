@@ -15,7 +15,6 @@ ABaseWeapon::ABaseWeapon()
 void ABaseWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ABaseWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {
@@ -50,16 +49,6 @@ void ABaseWeapon::UseWeaponServer_Implementation() {
 
 bool ABaseWeapon::UseWeaponServer_Validate() {
 	return CanUseWeapon();
-}
-
-void ABaseWeapon::WeaponAttackAnimationMulticast_Implementation() {
-	//if (Role == ROLE_Authority) {
-		WeaponAttackAnimationEvent();
-	//}
-}
-
-void ABaseWeapon::WeaponAttackAnimationEvent_Implementation() {
-	//empty for blueprint to implement
 }
 
 void ABaseWeapon::UseWeaponEvent_Implementation() {

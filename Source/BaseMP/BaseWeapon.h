@@ -28,8 +28,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		WeaponEnum WeaponType;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Base Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		TArray<UAnimMontage*> IdleAnimations;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
+		TArray<UAnimMontage*> AttackAnimations;
 
 	UPROPERTY(VisibleAnywhere, Category = "Base Weapon", meta = (AllowPrivateAccess = "true"))
 		class USkeletalMeshComponent* SkeletalMeshComponent;
@@ -52,13 +55,5 @@ protected:
 		void UseWeaponServer();
 		void UseWeaponServer_Implementation();
 		bool UseWeaponServer_Validate();
-
-	UFUNCTION(NetMulticast, reliable, BlueprintCallable)
-		void WeaponAttackAnimationMulticast();
-		void WeaponAttackAnimationMulticast_Implementation();
-
-	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
-		void WeaponAttackAnimationEvent();
-		virtual void WeaponAttackAnimationEvent_Implementation();
 
 };
