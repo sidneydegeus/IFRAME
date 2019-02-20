@@ -16,6 +16,7 @@ class BASEMP_API ABaseWeapon : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ABaseWeapon();
+
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
@@ -27,15 +28,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Base Weapon")
 		WeaponEnum WeaponType;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Base Weapon")
+		TArray<UAnimMontage*> IdleAnimations;
+
 	UPROPERTY(VisibleAnywhere, Category = "Base Weapon", meta = (AllowPrivateAccess = "true"))
 		class USkeletalMeshComponent* SkeletalMeshComponent;
 
 	UFUNCTION(BlueprintCallable, Category = "Base Weapon")
 		void UseWeapon();
-
-	UFUNCTION(NetMulticast, unreliable, BlueprintCallable, Category = "Base Weapon")
-		void WeaponIdleAnimationMulticast();
-		void WeaponIdleAnimationMulticast_Implementation();
 
 protected:
 	// Called when the game starts or when spawned
@@ -61,7 +61,4 @@ protected:
 		void WeaponAttackAnimationEvent();
 		virtual void WeaponAttackAnimationEvent_Implementation();
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Base Weapon")
-		void WeaponIdleAnimationEvent();
-		virtual void WeaponIdleAnimationEvent_Implementation();
 };

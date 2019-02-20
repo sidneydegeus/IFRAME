@@ -11,8 +11,6 @@ ABaseWeapon::ABaseWeapon()
 	RootComponent = SkeletalMeshComponent;
 }
 
-
-
 // Called when the game starts or when spawned
 void ABaseWeapon::BeginPlay()
 {
@@ -60,17 +58,7 @@ void ABaseWeapon::WeaponAttackAnimationMulticast_Implementation() {
 	//}
 }
 
-void ABaseWeapon::WeaponIdleAnimationMulticast_Implementation() {
-	//if (Role == ROLE_Authority) {
-		WeaponIdleAnimationEvent();
-	//}
-}
-
 void ABaseWeapon::WeaponAttackAnimationEvent_Implementation() {
-	//empty for blueprint to implement
-}
-
-void ABaseWeapon::WeaponIdleAnimationEvent_Implementation() {
 	//empty for blueprint to implement
 }
 
