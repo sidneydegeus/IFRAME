@@ -1,3 +1,7 @@
-TODO: (updated 20/2/2019 - 20:14)
+TODO: (updated 21/2/2019 - 1:48)
 
 - Fix interuption of attacks
+- Unarmed (instead of fist) + animations
+- equip/unequip animations
+- jump animations
+

@@ -11,5 +11,6 @@ UENUM(BlueprintType)
 enum class WeaponEnum : uint8 {
 	Fist			UMETA(DisplayName = "Fist"),
 	Rifle			UMETA(DisplayName = "Rifle"),
-	GreatSword		UMETA(DisplayName = "Great Sword")
+	GreatSword		UMETA(DisplayName = "Great Sword"),
+	OneHSwordShield	UMETA(DisplayName = "1H Sword And Shield")
 };
