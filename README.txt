@@ -1,11 +1,16 @@
-Unreal Engine 4 - Base multiplayer game
+Unreal Engine 4 - multiplayer game with various features.
 
-Guides used to set up the initial parts of the project:
-- https://www.youtube.com/playlist?list=PL56pcT0mYsOgFmbwukjKppPI_Q7E89jTK
-- https://www.youtube.com/playlist?list=PLwmGmCVti_dDl8CMa_91FdwgZ0W010d5v
+Features:
+- Multiplayer
+- Combat (Various weapons with animations)
+- 
 
-Plugins:
-Advanced Sessions Plugin - https://forums.unrealengine.com/community/community-content-tools-and-tutorials/41043-advanced-sessions-plugin
+TODO:
+- Vehicles
+- Enemies (AI)
+- GUI/Menu etc
+- Pickup/Inventory
+- Save game state
+- ?
 
-Other:
-- Online subsystem steam - https://docs.unrealengine.com/en-us/Programming/Online/Steam
+Possible more to be added.
